@@ -20,7 +20,6 @@ class CreateExercisesTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
