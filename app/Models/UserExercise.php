@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class UserExercise extends Model
 {
     use HasFactory;
+    protected $guarded;
+
+    protected $with = ['exercise'];
+
+    public function exercise()
+    {
+        return $this->belongsTo(Exercise::class);
+    }
 }

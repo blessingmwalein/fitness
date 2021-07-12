@@ -3,7 +3,6 @@
 @section('content')
     @include('components.banner')
 
-
     <section class="schedule-area section-gap" id="schedule">
         <div class="container">
             <nav>
@@ -16,6 +15,11 @@
                         aria-controls="nav-contact" aria-selected="false">Contact</a>
                 </div>
             </nav>
+            @if (session()->has('message'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <section class="top-course-area section-gap" id="top-course">
@@ -58,18 +62,17 @@
                                     <div class="visit">Notes</div>
                                     <div class="percentage">Duration</div>
                                 </div>
-                                <div class="table-row">
-                                    <div class="serial">01</div>
-                                    <div class="country"> <img src="img/elements/xf1.jpg.pagespeed.ic.DTiRWj42lF.jpg"
-                                            alt="flag">Canada</div>
-                                    <div class="visit">645032</div>
-                                    <div class="percentage">
-                                        <div class="progress">
-                                            <div class="progress-bar color-1" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                @foreach ($user_exercises as $exercise)
+                                    <div class="table-row">
+                                        <div class="serial">{{$exercise->id}}</div>
+                                        <div class="country"> <img height="50" width="50" src="{{ asset('/uploads/' . $exercise->exercise->image) }}"
+                                                alt="flag">{{$exercise->exercise->name}}</div>
+                                        <div class="visit">{{$exercise->notes}}</div>
+                                        <div class="visit">
+                                            <div class="visit">{{$exercise->exercise->duration}} minutes</div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -95,26 +98,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST" action="{{ route('exercise.store') }}">
+                        @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Exercise</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" name="exercise_id">
                                 @foreach ($exercises as $exercise)
-                                    <option value="{{$exercise->id}}">{{$exercise->name}}</option>
+                                    <option value="{{ $exercise->id }}">{{ $exercise->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Notes</label>
-                            <textarea name="notes" id="" class="form-control"   rows="4"></textarea>
+                            <textarea name="notes" id="" class="form-control" rows="4"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>

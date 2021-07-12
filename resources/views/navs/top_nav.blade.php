@@ -32,7 +32,7 @@
                         <li><a href="#offer">Progress</a></li>
                         <li><a href="#top-course">Calculators</a></li>
                         <li><a href="/schedule">Schedule</a></li>
-                        <li><a href="#trainer">Personal Trainers</a></li>
+                        <li><a href="/trainers">Personal Trainers</a></li>
                         <li><a href="/exercise">Execise & Plan</a></li>
                        <li><a href="{{ route('user.logout')}}">Logout</a></li>
                     @endguest
