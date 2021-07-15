@@ -45,17 +45,11 @@ class UserController extends Controller
            'email'=> 'required | email | unique:users',
            'password' => 'required | min:8'
         ]);
-
        $data['password'] = Hash::make($data['password']);
-
-
-       $user = User::create($data);
-
-       return redirect('/')->withSuccess('Thanks for registering');
-
+       if( User::create($data)){
+         return redirect('/login')->with('message','Thanks for registering');
+       }else{
+         return redirect('/register')->with('message','Opps something went wrong, please try again');
+       }
     }
-
-
-
-
 }

@@ -9,7 +9,7 @@
             </div>
             <div class="col-lg-4 menu-top-middle justify-content-center d-flex">
                 <a href="index-2.html">
-                    <h2>Fitness</h2>
+                    <img src="/img/logo1.png" alt="">
                 </a>
             </div>
             <div class="col-lg-4 col-sm-4 menu-top-right">

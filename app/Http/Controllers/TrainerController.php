@@ -20,6 +20,7 @@ class TrainerController extends Controller
             'name' => 'required',
             'email' => 'required | email | unique:users',
             'password' => 'required | min:8',
+            'price' => 'required',
             'image' => 'image|nullable'
         ]);
 

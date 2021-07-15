@@ -19,7 +19,7 @@ class CreateUserTrainersTable extends Migration
             $table->foreignId('trainer_id')->constrained('trainers');
             $table->string('date_of_book');
             $table->string('time');
-            $table->string('price');
+            // $table->string('price');
             $table->timestamps();
         });
     }

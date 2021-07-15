@@ -31,6 +31,14 @@
                         @endif
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Price</label>
+                        <input type="number" class="form-control" name="price" placeholder="Price">
+                        @if ($errors->has('price'))
+                            <small id="emailHelp" style="color: red"
+                                class="form-text text-muted">{{ $errors->first('price') }}</small>
+                        @endif
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputPassword1">Image</label>
                         <input type="file" class="form-control" name="image" placeholder="Password">
                         @if ($errors->has('image'))

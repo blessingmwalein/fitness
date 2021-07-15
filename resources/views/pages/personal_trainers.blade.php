@@ -21,7 +21,7 @@
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#" class="genric-btn info radius">Book</a>
+                                <a href="#" class="genric-btn info radius">Book (${{$trainer->price}})</a>
                             </div>
                         </div>
                         <div class="meta-text mt-30 text-center">

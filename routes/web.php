@@ -4,6 +4,7 @@ use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\TrainerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserExerciseController;
+use App\Http\Controllers\UserTrainerController;
 use App\Models\Trainer;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('pages.home', ['trainers'=> Trainer::all()]);
 });
 Route::get('/register', function () {
     return view('pages.auth.register');
@@ -35,17 +36,15 @@ Route::get('/trainer-login', function () {
     return view('pages.auth.trainer.login');
 });
 
-Route::get('/schedule', function () {
-    return view('pages.schedule');
-});
 Route::get('/trainers', [TrainerController::class, 'index'] );
-
 
 Route::middleware('auth:web')->group(function () {
  Route::post('/exercise/store', [UserExerciseController::class, 'store'])->name('exercise.store');
+ Route::post('/schedule/store', [UserTrainerController::class, 'store'])->name('schedule.store');
  Route::get('/exercise', [ExerciseController::class, 'index']);
-});
+ Route::get('/schedule', [UserTrainerController::class, 'index']);
 
+});
 
 Route::post('register-user', [UserController::class, 'store'])->name('user.register');
 Route::post('user-login', [UserController::class, 'login'])->name('user.login');
